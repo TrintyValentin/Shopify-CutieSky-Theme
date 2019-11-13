@@ -1,0 +1,6 @@
+development:
+  password: 
+  theme_id: "79206023221"
+  store: supreme-offwhite.myshopify.com
+  ignore_files:
+  - config/settings_data.json
