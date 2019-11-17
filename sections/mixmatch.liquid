@@ -1,0 +1,124 @@
+<div class="slideshow-container">
+    {% for product in collections[section.settings.collection].products %}
+        <div class="mySlides">
+            <img src="{{ product | img_url: '1200x400' }}" class="image-mix" onclick="plusSlides(1)">
+            <div class="text">{{ product.title | escape }} - {{ product.price | money}}</div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="slideshow-container2">
+    {% for product in collections[section.settings.collections].products %}
+        <div class="mySlides2">
+            <img src="{{ product | img_url: '1200x400' }}" class="image-mix" onclick="plusSlides2(1)">
+            <div class="text">{{ product.title | escape }} - {{ product.price | money}}</div>
+        </div>
+    {% endfor %}
+</div>
+
+<style>
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin:0
+}
+
+.image-mix{
+    width:1200px; 
+    height:400px; 
+    margin-left:50%; 
+    transform:translateX(-50%);
+}
+
+.mySlides, .mySlides2 {
+    display: none
+}
+
+img {
+    vertical-align: middle;
+}
+        
+.slideshow-container2, .slideshow-container {
+    position: relative;
+    margin: auto;
+}
+
+.text {
+    color: black;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+.numbertext {
+    color: black;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+</style>
+
+<script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        showSlides2(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        function plusSlides2(n) {
+          showSlides2(slideIndex += n);
+        }
+        
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          slides[slideIndex-1].style.display = "block";  
+        }
+        function showSlides2(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides2");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          slides[slideIndex-1].style.display = "block";  
+        }
+        </script>
+
+{% schema %}
+{
+  "name": "Match",
+  "settings": [
+  {
+    "id": "collection",
+    "type": "collection",
+    "label": "Collection"
+  },
+  {
+    "id": "collections",
+    "type": "collection",
+    "label": "Collection 2"
+  }   
+  ],
+  "presets": [
+    {
+      "name": "Mix and Match",
+      "category": "IIM"
+    }
+  ]
+}
+
+{% endschema %}
