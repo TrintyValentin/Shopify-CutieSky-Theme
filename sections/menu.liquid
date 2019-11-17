@@ -1,0 +1,41 @@
+<div style="display: block; text-align: center;">
+    <img src="{{ section.settings.image | img_url: '360x360'}}" alt="logo">
+        <ul>
+            {% for link in linklists[section.settings.main_linklist].links %}
+            <li style="display: inline-block;">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+</div>
+      
+{% schema %}
+{
+    "name": "Menu",
+    "settings": [
+    {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Menu"
+    },
+    {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo"
+    }
+    ],
+    "presets": [
+        {
+            "name": "Menu",
+            "category": "IIM"
+        }
+    ]
+}
+      
+{% endschema %}
+      
+{% stylesheet %}
+{% endstylesheet %}
+      
+{% javascript %}
+{% endjavascript %}
